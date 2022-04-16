@@ -1,0 +1,14 @@
+syntax = "proto3";
+package emailhandeler;
+
+message email_request {
+    string emailAddress = 1;
+}
+message sliced_email{
+    string username =1;
+    stirng domain =2;
+}
+
+service Emailhandler{
+    rpc Email(email_request) returns(sliced_email)
+}//https://github.com/danielgtaylor/python-betterproto
