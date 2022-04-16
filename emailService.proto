@@ -6,9 +6,11 @@ message email_request {
 }
 message sliced_email{
     string username =1;
-    stirng domain =2;
+    string domain =2;
 }
 
 service Emailhandler{
-    rpc Email(email_request) returns(sliced_email)
-}//https://github.com/danielgtaylor/python-betterproto
+    rpc Email(email_request) returns(sliced_email);
+}
+
+//https://github.com/danielgtaylor/python-betterproto
