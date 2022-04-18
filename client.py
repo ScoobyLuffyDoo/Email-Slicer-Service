@@ -1,17 +1,19 @@
-import asyncio
-import resources
+from urllib import response
+import grpc
+import emailService_pb2 as pb2
+import emailService_pb2_grpc as pb2_grpc
 
-from grpclib.client import Channel
+def slice_email(i_email):
+    with grpc.insecure_channel('localhost:50051')as channel:
+        stub = pb2_grpc.EmailhandlerStub(channel)
+        response = stub.Email(pb2.email_request(emailAddress=i_email))
+        return {'username':response.username,'doamin':response.doamin}
+
+def cleint():
+    email= input("email address?\n")
+    o_email = slice_email(email)
+    print(o_email)
 
 
-async def main():
-    channel = Channel(host ='localhost' Port=50051)
-    service = resources.EmailhandlerStub(channel)
-    response = await service.email(resources.EmailRequest(email_address ="jc.smal626@gmail.com"))
-    print(response)
-
-    channel.close()
-
-if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+if __name__ == '__main__':
+    cleint()

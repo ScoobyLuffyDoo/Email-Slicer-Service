@@ -1,1 +1,1 @@
-from emailhandeler import EmailRequest, SlicedEmail,EmailhandlerStub
+from resources.emailslicer import EmailSlicer
