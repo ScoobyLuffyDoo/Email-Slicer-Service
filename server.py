@@ -1,20 +1,20 @@
 from concurrent import futures
+
 import grpc
 import emailService_pb2 as pb2
 import emailService_pb2_grpc as pb2_grpc
 import resources
 
 class Emailhandler(pb2_grpc.EmailhandlerServicer):
-    
-    def emailslicer(self, request,context):
+    def Email(self, request,context):
         inputEmail = request.emailAddress
-        print(inputEmail) 
+        print(inputEmail)     
         is_email = resources.EmailSlicer.checkEmailAddress(inputEmail)
         if is_email:
             email_service= resources.EmailSlicer()
-            email_service.sliceEmail(inputEmail)
-            o_username = email_service.username
-            o_domain =email_service.domain
+            email_response =email_service.sliceEmail(inputEmail)
+            o_username =email_response['username']
+            o_domain = email_response['domain']
         else:
             pass
         return pb2.sliced_email(username=o_username,domain=o_domain)

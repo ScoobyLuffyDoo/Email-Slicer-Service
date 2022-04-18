@@ -7,13 +7,14 @@ def slice_email(i_email):
     with grpc.insecure_channel('localhost:50051')as channel:
         stub = pb2_grpc.EmailhandlerStub(channel)
         response = stub.Email(pb2.email_request(emailAddress=i_email))
-        return {'username':response.username,'doamin':response.doamin}
+        return {'username':response.username,'domain':response.domain}
 
-def cleint():
-    email= input("email address?\n")
-    o_email = slice_email(email)
-    print(o_email)
+def client():
+    while True:
+        email= input("email address?\n")
+        o_email = slice_email(email)
+        print(o_email)
 
 
 if __name__ == '__main__':
-    cleint()
+    client()

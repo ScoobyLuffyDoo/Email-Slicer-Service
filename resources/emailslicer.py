@@ -1,11 +1,9 @@
 class EmailSlicer:   
-    username :str
-    domain:str 
     def sliceEmail(self,email):
         i_email = email.strip()
-        self.username = i_email[:i_email.index('@')]
-        self.domain = i_email[i_email.index('@') + 1:]
-        return
+        username= i_email[:i_email.index('@')]
+        domain = i_email[i_email.index('@') + 1:]
+        return{'username':username, 'domain':domain}
 
     @staticmethod
     def checkEmailAddress(email):
